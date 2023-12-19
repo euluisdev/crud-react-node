@@ -3,7 +3,7 @@ import '/src/css/App.css'
 
 const App = () => {
   const [values, setValues] = useState();
-  console.log(values);
+  /* console.log(values); */
 
   const handleChangeValues = (event) => {
     setValues(prevEvent => ({
@@ -13,7 +13,7 @@ const App = () => {
   };
 
   const handleClickBtn = () => {
-    console.log('Clicou!')
+    console.log(values);
   };
 
   return (
@@ -27,14 +27,14 @@ const App = () => {
           onChange={handleChangeValues}
         />
         <input type="text"
-          name='name'
-          placeholder='Home'
+          name='cost'
+          placeholder='Preço'
           className='register--input' 
           onChange={handleChangeValues}
         />
         <input type="text"
-          name='name'
-          placeholder='Home'
+          name='category'
+          placeholder='Categoria'
           className='register--input' 
           onChange={handleChangeValues}
         />
