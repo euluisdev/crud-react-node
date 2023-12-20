@@ -2,9 +2,13 @@ const express = require('express');
 const app = express();
 const mysql = require("mysql");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 dotenv.config();
 const port = process.env.PORT || 3002;
+
+app.use(cors());
+app.use(express.json());
 
 const db = mysql.createPool({
     host: "localhost",
@@ -12,13 +16,13 @@ const db = mysql.createPool({
     database: "crudregister"
 });
 
-app.get("/", (req, res) => {
+/* app.get("/", (req, res) => {
     let SQL = "INSERT INTO games ( name, cost, category ) VALUES ( 'Far Cry', '120', 'Ação' )";
 
     db.query(SQL, (err, result) => {
         console.log(err);
     });
-});
+}); */
 
 app.listen(port, () => {
     console.log('server connected!');
