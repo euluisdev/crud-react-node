@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
+const mysql = require("mysql");
+const dotenv = require("dotenv");
 
-app.get("/", (req, res) => {
-    res.send('Hello Wordão!!')
-});
+dotenv.config();
+const port = process.env.PORT || 3002;
 
-app.listen(3001, () => {
+app.listen(port, () => {
     console.log('server connected!');
 });
