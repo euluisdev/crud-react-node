@@ -16,13 +16,16 @@ const db = mysql.createPool({
     database: "crudregister"
 });
 
-/* app.get("/", (req, res) => {
-    let SQL = "INSERT INTO games ( name, cost, category ) VALUES ( 'Far Cry', '120', 'Ação' )";
+ app.post("/register", (req, res) => {
+    const { name } = req.body;
+    const { cost } = req.body;
+    const { category } = req.body;
 
-    db.query(SQL, (err, result) => {
+    let SQL = "INSERT INTO games ( name, cost, category ) VALUES ( ?, ?, ? )";
+    db.query(SQL, [ name, cost, category ], (err, result) => {
         console.log(err);
     });
-}); */
+});
 
 app.listen(port, () => {
     console.log('server connected!');

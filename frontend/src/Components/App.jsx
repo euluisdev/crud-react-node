@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '/src/css/App.css'
+import '/src/css/App.css';
+import Axios from 'axios';
 
 const App = () => {
   const [values, setValues] = useState();
@@ -13,7 +14,13 @@ const App = () => {
   };
 
   const handleClickBtn = () => {
-    console.log(values);
+    Axios.post('http://localhost:3002/register', {
+      name: values.name,
+      cost: values.cost,
+      category: values.category,
+    }).then((response) => {
+      console.log(response);
+    })
   };
 
   return (
