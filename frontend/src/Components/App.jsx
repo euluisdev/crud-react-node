@@ -5,7 +5,8 @@ import Card from './Cards';
 
 const App = () => {
   const [values, setValues] = useState();
-  /* console.log(values); */
+  const [listGames, setListGames] = useState();
+  console.log(listGames);
 
   const handleChangeValues = (event) => {
     setValues(prevEvent => ({
@@ -26,7 +27,7 @@ const App = () => {
 
   useEffect(() => {
     Axios.get('http://localhost:3002/getCards').then((response) => {
-      console.log(response);
+      setListGames(response.data);
     });
   }, [])
 
@@ -37,19 +38,19 @@ const App = () => {
         <input type="text"
           name='name'
           placeholder='Home'
-          className='register--input' 
+          className='register--input'
           onChange={handleChangeValues}
         />
         <input type="text"
           name='cost'
           placeholder='Preço'
-          className='register--input' 
+          className='register--input'
           onChange={handleChangeValues}
         />
         <input type="text"
           name='category'
           placeholder='Categoria'
-          className='register--input' 
+          className='register--input'
           onChange={handleChangeValues}
         />
         <button
@@ -57,10 +58,20 @@ const App = () => {
           onClick={() => handleClickBtn()}>Cadastrar
         </button>
       </div>
-      <Card />
+      {typeof listGames !== 'undefined' &&
+        listGames.map((value) => {
+          return <Card key={value.id} 
+            listCard={listGames} 
+            setListCard={setListGames} 
+            id={value.id} 
+            name={value.name} 
+            cost={value.cost} 
+            category={value.category} 
+          ></Card>
+        })
+      }
     </div>
   )
-
 };
 
 export default App;
