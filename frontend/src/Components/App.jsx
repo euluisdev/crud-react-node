@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '/src/css/App.css';
 import Axios from 'axios';
+import Card from './Cards';
 
 const App = () => {
   const [values, setValues] = useState();
@@ -50,6 +51,7 @@ const App = () => {
           onClick={() => handleClickBtn()}>Cadastrar
         </button>
       </div>
+      <Card />
     </div>
   )
 
