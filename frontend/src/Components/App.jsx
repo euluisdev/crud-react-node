@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '/src/css/App.css';
 import Axios from 'axios';
 import Card from './Cards';
@@ -23,6 +23,12 @@ const App = () => {
       console.log(response);
     })
   };
+
+  useEffect(() => {
+    Axios.get('http://localhost:3002/getCards').then((response) => {
+      console.log(response);
+    });
+  }, [])
 
   return (
     <div className='app--container'>
