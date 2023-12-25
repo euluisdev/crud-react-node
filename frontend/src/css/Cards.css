@@ -1,0 +1,20 @@
+.card--container {
+    width: 250px;
+    border: 3px solid black;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.card--container:hover {
+    background-color: aqua;
+}
+
+.card--title {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.card--category {
+    margin-top: 5px;
+}
