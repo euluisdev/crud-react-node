@@ -1,5 +1,6 @@
 import React from "react";
 import '/src/css/Cards.css';
+import FormDialog from "./Dialog";
 
 const Card = (props) => {
     return ( 
