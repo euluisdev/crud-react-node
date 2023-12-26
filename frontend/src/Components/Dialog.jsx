@@ -7,44 +7,58 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-export default function FormDialog() {
-  const [open, setOpen] = React.useState(false);
-
+export default function FormDialog(props) {
   const handleClickOpen = () => {
-    setOpen(true);
+    props.setOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    props.setOpen(false);
   };
 
   return (
-    <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+      <Dialog 
+        open={props.open} 
+        onClose={handleClose}
+      >
+        <DialogTitle>Editar</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
-          </DialogContentText>
           <TextField
             autoFocus
             margin="dense"
             id="name"
-            label="Email Address"
-            type="email"
+            label="Nome do jogo"
+            defaultValue={props.name} 
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="category"
+            label="Categoria"
+            defaultValue={props.category}
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="cost"
+            label="Preço" 
+            defaultValue={props.cost}
+            type="text"
             fullWidth
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
+          <Button onClick={handleClose}>Salvar</Button>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleClose}>Excluir</Button>
         </DialogActions>
       </Dialog>
-    </React.Fragment>
   );
 }
