@@ -15,7 +15,7 @@ const FormDialog = (props) => {
     category: props.category,
   });
   
-  const handleEditGame = () => {
+  const handleEditGame = () => { //edit card
     Axios.put("http://localhost:3002/edit", {
       id: editValues.id,
       name: editValues.name,
@@ -26,9 +26,13 @@ const FormDialog = (props) => {
     }).catch((error) => {
       console.error(error);
     });
-    handleClose();
-    document.location.reload()
+    handleClose(); //close the formDialog
+    document.location.reload();
   };
+
+  const handleDeleteGame = () => { //delete card
+    Axios.delete(`http://localhost:3002/delete/${editValues.id}`)
+  }
 
   const handleClickOpen = () => {
     props.setOpen(true);
@@ -38,7 +42,7 @@ const FormDialog = (props) => {
     props.setOpen(false);
   };
 
-  const handleChangeValues = (value) => {
+  const handleChangeValues = (value) => { //get id from input
     setEditValues(prevValue => ({
       ...prevValue,
       [value.target.id]: value.target.value,
@@ -89,7 +93,7 @@ const FormDialog = (props) => {
       <DialogActions>
         <Button onClick={handleEditGame}>Salvar</Button>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleClose}>Excluir</Button>
+        <Button onClick={handleDeleteGame}>Excluir</Button>
       </DialogActions>
     </Dialog>
   );
