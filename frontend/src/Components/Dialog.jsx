@@ -31,7 +31,9 @@ const FormDialog = (props) => {
   };
 
   const handleDeleteGame = () => { //delete card
-    Axios.delete(`http://localhost:3002/delete/${editValues.id}`)
+    Axios.delete(`http://localhost:3002/delete/${editValues.id}`);
+    handleClose();
+    location.reload(); 
   }
 
   const handleClickOpen = () => {
