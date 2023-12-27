@@ -10,7 +10,7 @@ const port = process.env.PORT || 3002;
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createPool({
+const db = mysql.createPool({ //database configuration
     host: "localhost",
     user: "root",
     database: "crudregister"
@@ -22,7 +22,7 @@ const db = mysql.createPool({
     const { category } = req.body;
 
     let SQL = "INSERT INTO games ( name, cost, category ) VALUES ( ?, ?, ? )";
-    db.query(SQL, [ name, cost, category ], (err, result) => {
+    db.query(SQL, [name, cost, category], (err, result) => {
         console.log(err);
     });
 });
@@ -33,6 +33,20 @@ app.get("/getCards", (req, res) => {
         if (err) console.log(err)
         else res.send(result);
     })
+});
+
+app.put("/edit", (req, res) => {
+    const { id } = req.body;
+    const { name } = req.body;
+    const { cost } = req.body;
+    const { category } = req.body;
+
+    let SQL = "UPDATE games SET name = ?, cost = ?, category = ? WHERE idgames = ?";
+
+    db.query(SQL, [name, cost, category, id], (err, result) => {
+        if (err) console.log(err)
+        else res.send(result);
+    });
 });
 
 app.listen(port, () => {

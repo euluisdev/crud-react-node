@@ -6,28 +6,29 @@ import Card from './Cards';
 const App = () => {
   const [values, setValues] = useState();
   const [listGames, setListGames] = useState();
-  console.log(listGames);
+  /* console.log(listGames); */
 
-  const handleChangeValues = (event) => {
-    setValues(prevEvent => ({
-      ...prevEvent,
-      [event.target.name]: event.target.value,
+  const handleChangeValues = (value) => { //gets values ​​from all inputs
+    setValues(prevValue => ({
+      ...prevValue,
+      [value.target.name]: value.target.value
     }));
   };
 
-  const handleClickBtn = () => {
-    Axios.post('http://localhost:3002/register', {
-      name: values.name,
-      cost: values.cost,
-      category: values.category,
-    }).then((response) => {
-      console.log(response);
-    })
+  const handleClickBtn = () => { //insert data into url
+    Axios.post('http://localhost:3002/register',
+      {
+        name: values.name,
+        cost: values.cost,
+        category: values.category,
+      }).then((response) => {
+        console.log(response);
+      })
   };
 
   useEffect(() => {
     Axios.get('http://localhost:3002/getCards').then((response) => {
-      setListGames(response.data);
+      setListGames(response.data); //the response is inserted into setListGames
     });
   }, [])
 
@@ -58,15 +59,16 @@ const App = () => {
           onClick={() => handleClickBtn()}>Cadastrar
         </button>
       </div>
+
       {typeof listGames !== 'undefined' &&
         listGames.map((value) => {
-          return <Card key={value.id} 
-            listCard={listGames} 
-            setListCard={setListGames} 
-            id={value.id} 
-            name={value.name} 
-            cost={value.cost} 
-            category={value.category} 
+          return <Card key={value.idgames}
+            listCard={listGames}
+            setListCard={setListGames}
+            id={value.idgames} 
+            name={value.name}
+            cost={value.cost}
+            category={value.category}
           ></Card>
         })
       }
