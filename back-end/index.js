@@ -23,7 +23,8 @@ const db = mysql.createPool({ //database configuration
 
     let SQL = "INSERT INTO games ( name, cost, category ) VALUES ( ?, ?, ? )";
     db.query(SQL, [name, cost, category], (err, result) => {
-        console.log(err);
+        if (err) console.log(err)
+        else res.send(result);
     });
 });
 

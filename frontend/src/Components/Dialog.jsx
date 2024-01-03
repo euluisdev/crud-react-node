@@ -34,7 +34,8 @@ const FormDialog = (props) => {
     Axios.delete(`http://localhost:3002/delete/${editValues.id}`);
     handleClose();
     location.reload(); 
-  }
+    alert('Deletado com sucessso!');
+  };
 
   const handleClickOpen = () => {
     props.setOpen(true);

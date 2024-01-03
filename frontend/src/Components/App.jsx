@@ -21,8 +21,16 @@ const App = () => {
         name: values.name,
         cost: values.cost,
         category: values.category,
-      }).then((response) => {
-        console.log(response);
+      }).then(() => {
+        setListGames([ 
+          {
+            id: values.id,
+            name: values.name,
+            cost: values.cost,
+            category: values.category,
+          },
+          ...listGames,
+        ]);
       })
   };
 
