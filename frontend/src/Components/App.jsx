@@ -24,7 +24,7 @@ const App = () => {
       }).then(() => {
         setListGames([ 
           {
-            id: values.id,
+            id: values.idgames,
             name: values.name,
             cost: values.cost,
             category: values.category,
